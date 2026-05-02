@@ -1,0 +1,12 @@
+services:
+  enterprise-agent-workbench:
+    build: .
+    container_name: enterprise-agent-workbench
+    ports:
+      - "8000:8000"
+    environment:
+      APP_HOST: 0.0.0.0
+      APP_PORT: 8000
+      LLM_PROVIDER: local-rule
+    volumes:
+      - ./backend/app/data:/app/backend/app/data

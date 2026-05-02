@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enterprise Agent Workbench</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">AI</div>
+        <div>
+          <div class="brand-title">Agent Workbench</div>
+          <div class="brand-subtitle">企业级智能工作流平台</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#dashboard" class="active">工作台总览</a>
+        <a href="#task">创建任务</a>
+        <a href="#knowledge">知识库</a>
+        <a href="#trace">执行轨迹</a>
+      </nav>
+      <div class="sidebar-card">
+        <span>Runtime</span>
+        <strong id="runtimeStatus">checking...</strong>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1>企业运营 AI Agent 自动化平台</h1>
+          <p>多 Agent 协作 · 知识检索 · 文档生成 · 质量审核 · 审计追踪</p>
+        </div>
+        <button class="ghost" onclick="refreshAll()">刷新数据</button>
+      </header>
+
+      <section id="dashboard" class="grid metrics">
+        <div class="metric"><span>任务总数</span><strong id="mTotalTasks">0</strong></div>
+        <div class="metric"><span>已完成</span><strong id="mCompleted">0</strong></div>
+        <div class="metric"><span>知识文档</span><strong id="mDocs">0</strong></div>
+        <div class="metric"><span>平均质量分</span><strong id="mScore">0</strong></div>
+      </section>
+
+      <section class="panel" id="task">
+        <div class="panel-head">
+          <div>
+            <h2>创建 Agent 任务</h2>
+            <p>输入业务目标，系统自动执行“理解—检索—分析—生成—审核”链路。</p>
+          </div>
+        </div>
+        <div class="form-grid">
+          <label>任务标题<input id="title" value="生成本周运营周报" /></label>
+          <label>任务类型<input id="taskType" value="运营周报" /></label>
+          <label class="wide">任务目标<textarea id="goal">基于企业运营制度和已有知识库，生成一份面向部门负责人汇报的运营周报，包含本周进展、风险事项和下周计划。</textarea></label>
+          <label class="wide">补充上下文<textarea id="context">本周重点关注客服响应、跨部门协作和风险跟踪，输出需要正式、清晰、可复核。</textarea></label>
+          <label>交付格式<input id="deliverable" value="运营周报 Markdown" /></label>
+          <div class="actions"><button onclick="runTask()">运行多 Agent 工作流</button></div>
+        </div>
+      </section>
+
+      <section class="panel" id="knowledge">
+        <div class="panel-head">
+          <div>
+            <h2>企业知识库</h2>
+            <p>上传 txt/md 文档，系统会自动切分为知识片段，供检索 Agent 使用。</p>
+          </div>
+        </div>
+        <div class="upload-row">
+          <input type="file" id="fileInput" accept=".txt,.md,.csv,.log" />
+          <button class="secondary" onclick="uploadFile()">上传资料</button>
+        </div>
+        <div id="knowledgeList" class="list"></div>
+      </section>
+
+      <section class="panel" id="trace">
+        <div class="panel-head">
+          <div>
+            <h2>执行轨迹与生成物</h2>
+            <p>查看每个 Agent 的输入输出摘要、质量评分和最终材料。</p>
+          </div>
+        </div>
+        <div class="content-split">
+          <div>
+            <h3>最近任务</h3>
+            <div id="taskList" class="list"></div>
+          </div>
+          <div>
+            <h3>任务详情</h3>
+            <pre id="taskDetail" class="detail">请选择一个任务</pre>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

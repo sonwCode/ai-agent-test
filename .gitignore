@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Runtime data
+backend/app/data/agent_workbench.sqlite3
+backend/app/data/uploads/*
+!backend/app/data/uploads/.gitkeep
+backend/app/data/artifacts/*
+!backend/app/data/artifacts/.gitkeep
+
+# Env
+.env
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
