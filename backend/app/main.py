@@ -15,7 +15,9 @@ app = FastAPI(title=settings.app_name, version="1.0.0")
 
 STATIC_DIR = BASE_DIR / "static"
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
-
+@app.get("/", response_class=HTMLResponse, include_in_schema=False)
+def index() -> str:
+    return (STATIC_DIR / "index.html").read_text(encoding="utf-8")
 
 @app.on_event("startup")
 def on_startup() -> None:
